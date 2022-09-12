@@ -1,0 +1,18 @@
+<ion-content>
+  <img src="../../../assets/img/logo-robado.png" >
+  <ion-card>
+    <form (ngSubmit)="logForm()" [formGroup]="builder">
+      <ion-item>
+        <ion-label color="dark">Usuario</ion-label>
+        <ion-input type="text" name="user" [(ngModel)]="login.user" formControlName="user"></ion-input>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label>Contraseña</ion-label>
+        <ion-input type="password" name="password" [(ngModel)]="login.password" formControlName="password"></ion-input>
+      </ion-item>
+      <!-- [routerLink]="['/tabs/tab1']"  -->
+      <ion-button type="submit" > Entrar</ion-button>
+    </form>
+  </ion-card>
+</ion-content>

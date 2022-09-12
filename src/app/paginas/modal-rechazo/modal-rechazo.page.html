@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-icon name="close-outline" (click)="cerrar()"></ion-icon>
+    <ion-title class="ion-text-center">Solicitud rechazada</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form (ngSubmit)="logForm()">
+    <ion-item>
+      <ion-label>¿Por que?</ion-label>
+      <ion-select interface="action-sheet" class="custom-options" [(ngModel)]="rechazoJSON.motivo"
+        [ngModelOptions]="{standalone: true}">
+        <ion-select-option value="Estoy con un cliente">Estoy con un cliente</ion-select-option>
+        <ion-select-option value="Estoy fuera de la oficina">Estoy fuera de la oficina</ion-select-option>
+        <ion-select-option value="Hora de comida">Hora de comida</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <section class="ion-margin">
+      <ion-button *ngIf="rechazoJSON.motivo != null" color="primary" type="submit" expand="block">Enviar</ion-button>
+    </section>
+  </form>
+</ion-content>

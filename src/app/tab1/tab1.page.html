@@ -1,0 +1,29 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title class="ion-text-center">Solicitudes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  
+  <ion-card *ngFor="let i of solicitudes">
+    <ion-card-header>
+      <ion-card-subtitle>Nueva solicitud</ion-card-subtitle>
+      <ion-card-title>{{i.categoria}}</ion-card-title>
+      <ion-card-subtitle>{{i.requerimiento}}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content >
+      <section *ngIf="aceptadasRechazadas[solicitudes.indexOf(i)] != 'Aceptada'">
+        <h3 class="ion-text-justify">¿Aceptar Solicitud? </h3> 
+        <ion-button color="success" (click)="aceptarSolicitud(solicitudes.indexOf(i))">Aceptar</ion-button>
+        <ion-button color="danger" (click)="rechazarSolicitud(solicitudes.indexOf(i))">Rechazar</ion-button>
+      </section>
+      <section *ngIf="aceptadasRechazadas[solicitudes.indexOf(i)] == 'Aceptada'">
+        <ion-button  color="success" (click)="pendienteSolicitud(solicitudes.indexOf(i))" expand="block">Continuar</ion-button>
+      </section>
+    </ion-card-content>
+  </ion-card>
+  
+<!-- <app-form-acepto></app-form-acepto> -->
+
+</ion-content>

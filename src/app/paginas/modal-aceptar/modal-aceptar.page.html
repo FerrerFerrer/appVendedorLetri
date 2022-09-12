@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-icon name="close-outline" (click)="cerrar()"></ion-icon>
+    <ion-title class="ion-text-center">Solicitud aceptada</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Nueva solicitud</ion-card-subtitle>
+      <ion-card-title>{{solicitud.categoria}}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      Telefono de contacto: {{solicitud.telefono}}<br>
+      Correo del contacto:  {{solicitud.correo_electronico}}<br>
+      Dirección del contacto:  {{solicitud.direccion_de_contacto}}<br>
+      Zona: {{solicitud.zona}}<br>
+      Requerimiento:{{solicitud.requerimiento}}<br>
+      Numero de ocupantes: {{solicitud.numero_de_ocupantes}}<br>
+      Fecha del servicio: {{solicitud.fecha}}<br>
+      Comentarios: {{solicitud.comentarios}}<br>
+    </ion-card-content>
+  </ion-card>
+
+  <form (ngSubmit)="logForm()">
+    <ion-item>
+      <ion-label>¿Se realizo la cotización?</ion-label>
+      <ion-select interface="action-sheet" class="custom-options" [(ngModel)]="aceptarJSON.respuesta"
+        [ngModelOptions]="{standalone: true}" (ionChange)="guardarLocal()">
+        <ion-select-option value="Si">Si</ion-select-option>
+        <ion-select-option value="No">No</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item *ngIf="aceptarJSON.respuesta == 'Si'">
+      <ion-label>Folio de cotización</ion-label>
+      <ion-input type="number" name="folio" [(ngModel)]="aceptarJSON.folio"></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="aceptarJSON.respuesta == 'No'">
+      <ion-label>¿Por que?</ion-label>
+      <ion-select interface="action-sheet" class="custom-options" [(ngModel)]="aceptarJSON.motivo"
+        [ngModelOptions]="{standalone: true}">
+        <ion-select-option value="No podemos dar el servicio">No podemos dar el servicio</ion-select-option>
+        <ion-select-option value="No contesto el cliente">No contesto el cliente</ion-select-option>
+        <ion-select-option value="Datos de contacto incorrectos">Datos de contacto incorrectos</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <section class="ion-margin">
+      <ion-button *ngIf="aceptarJSON.folio != null || aceptarJSON.motivo != null" type="submit" color="primary" expand="block">Enviar
+      </ion-button>
+
+    </section>
+  </form>
+</ion-content>

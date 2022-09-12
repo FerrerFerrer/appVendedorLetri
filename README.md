@@ -1,0 +1,2 @@
+# appVendedorLetri
+🤣

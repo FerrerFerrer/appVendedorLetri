@@ -8,19 +8,18 @@
 <ion-content>
   <ion-card>
     <ion-card-header>
-      <ion-card-subtitle>Nueva solicitud</ion-card-subtitle>
-      <ion-card-title>{{solicitud.categoria}}</ion-card-title>
+      <ion-card-subtitle >Nueva solicitud</ion-card-subtitle>
+      <ion-card-title>{{solicitud.solicitud.categ}}</ion-card-title>
     </ion-card-header>
 
     <ion-card-content>
-      Telefono de contacto: {{solicitud.telefono}}<br>
-      Correo del contacto:  {{solicitud.correo_electronico}}<br>
-      Dirección del contacto:  {{solicitud.direccion_de_contacto}}<br>
-      Zona: {{solicitud.zona}}<br>
-      Requerimiento:{{solicitud.requerimiento}}<br>
-      Numero de ocupantes: {{solicitud.numero_de_ocupantes}}<br>
-      Fecha del servicio: {{solicitud.fecha}}<br>
-      Comentarios: {{solicitud.comentarios}}<br>
+      Telefono de contacto: {{solicitud.solicitud.telefono_contacto}}<br>
+      Correo del contacto:  {{solicitud.solicitud.correo_contacto}}<br>
+      Dirección del contacto:  {{solicitud.solicitud.direccion_contacto}}<br>
+      Requerimiento:{{solicitud.solicitud.equipo}}<br>
+      Numero de ocupantes: {{solicitud.solicitud.num_usuarios}}<br>
+      Fecha del servicio: {{solicitud.solicitud.fecha_servicio}}<br>
+      Comentarios: {{solicitud.solicitud.nota}}<br>
     </ion-card-content>
   </ion-card>
 

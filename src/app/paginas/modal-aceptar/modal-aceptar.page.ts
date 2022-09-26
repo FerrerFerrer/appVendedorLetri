@@ -12,35 +12,30 @@ export class ModalAceptarPage implements OnInit {
   constructor(private modalController: ModalController,
     private navParams: NavParams,) { }
 
-  solicitud = {
-    id: "",
-    telefono: "",
-    correo_electronico: "",
-    direccion_de_contacto: "",
-    categoria: "",
-    zona: "",
-    requerimiento: "",
-    numero_de_ocupantes: "",
-    fecha: "",
-    comentarios: ""
-  }
+  solicitud:any;
 
   aceptarJSON = {
-    id_solicitud: "1",
+    id_solicitud:"",
     respuesta: "",
     folio: null,
     motivo: null
   }
+  
+  ngOnInit() {
+    this.solicitud = this.navParams.get('datos_orden');
+    console.log(this.solicitud)
+  }
 
   logForm() {
-    console.log(this.aceptarJSON)
     if (this.aceptarJSON.folio != null) {
       this.aceptarJSON.motivo = "Si, se realizó la cotización"
     }
     if(this.aceptarJSON.respuesta == "No"){
       this.aceptarJSON.folio = "Sin registro.";
     }
-    this.precotizacion(this.aceptarJSON.id_solicitud, this.aceptarJSON.motivo, this.aceptarJSON.folio);
+    this.aceptarJSON.id_solicitud = this.solicitud.solicitud.id;
+    console.log(this.aceptarJSON);
+   // this.precotizacion(this.solicitud.solicitud.id, this.aceptarJSON.motivo, this.aceptarJSON.folio);
   }
 
   solicitud_terminada() {
@@ -60,9 +55,7 @@ export class ModalAceptarPage implements OnInit {
     console.log("Status de precotizacion", response2.status);
   }
 
-  ngOnInit() {
-    this.solicitud = this.navParams.get('datos_orden');
-  }
+
 
   cerrar() {
     this.modalController.dismiss();

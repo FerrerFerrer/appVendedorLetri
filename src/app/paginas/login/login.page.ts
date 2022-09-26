@@ -57,8 +57,6 @@ export class LoginPage implements OnInit {
       await alert.present();
       return
     }
-
-
     localStorage.setItem('user', this.login.user)
     localStorage.setItem('password', this.login.password)
 
@@ -92,11 +90,10 @@ export class LoginPage implements OnInit {
     }
     let session = this.validarUsuario(user, password)
     return session
-  }
+        }
 
   async validarUsuario(user, password){
-    const url = "http://192.168.88.237/letrimex_v2/public/api/ordenes_vendedor/1";
-    const url2 = "http://192.168.88.237/letrimex_v2/public/listaVendedoresApp"
+    const url2 = "http://192.168.88.237/letrimex_v2/public/listaVendedoresApp";
     const response = await fetch(url2, {
       method: 'GET',
       mode: 'cors',
@@ -108,7 +105,7 @@ export class LoginPage implements OnInit {
     })
 
     let req = await response.json();
-
+    console.log(req);
     for(let i of req){
       if(i.nombre_completo == user){
         if(i.telefono == password){

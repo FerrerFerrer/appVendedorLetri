@@ -1,17 +1,17 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Tab 3
+    <ion-title class="ion-text-center">
+      Historial
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+  <ion-card *ngFor="let i of res">
+    <ion-card-header>
+      <ion-card-subtitle>{{i.solicitud.categ}}</ion-card-subtitle>
+      <ion-card-title>{{i.solicitud.categ}}</ion-card-title>
+      <ion-card-subtitle>{{i.solicitud.categ}}</ion-card-subtitle>
+    </ion-card-header>
+  </ion-card>
 </ion-content>

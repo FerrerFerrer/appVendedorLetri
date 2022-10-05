@@ -35,7 +35,8 @@ export class ModalAceptarPage implements OnInit {
     }
     this.aceptarJSON.id_solicitud = this.solicitud.solicitud.id;
     console.log(this.aceptarJSON);
-   // this.precotizacion(this.solicitud.solicitud.id, this.aceptarJSON.motivo, this.aceptarJSON.folio);
+    this.precotizacion(this.solicitud.solicitud.id, this.aceptarJSON.motivo, this.aceptarJSON.folio);
+    this.cerrar();
   }
 
   solicitud_terminada() {
@@ -43,7 +44,7 @@ export class ModalAceptarPage implements OnInit {
   }
 
   async precotizacion(id_solicitud, motivo, folio) {
-    let url = "http://192.168.88.237/letrimex_v2/public/pre_cotizacion/" + id_solicitud + "/" + motivo + "/" + folio;
+    let url = "http://192.168.88.153/letrimex_v2/public/pre_cotizacion/" + id_solicitud + "/" + motivo + "/" + folio;
     const response2 = await fetch(url, {
       method: 'GET',
       mode: 'cors',
@@ -64,7 +65,7 @@ export class ModalAceptarPage implements OnInit {
   async guardarLocal() {
     if (this.aceptarJSON.respuesta == "Si") {
       // id_solicitud
-      let url = "http://192.168.88.237/public/tiempo_cliente/" + this.aceptarJSON.id_solicitud;
+      let url = "http://192.168.88.153/public/tiempo_cliente/" + this.aceptarJSON.id_solicitud;
 
       const response2 = await fetch(url, {
         method: 'GET',

@@ -93,7 +93,7 @@ export class LoginPage implements OnInit {
         }
 
   async validarUsuario(user, password){
-    const url2 = "http://192.168.88.237/letrimex_v2/public/listaVendedoresApp";
+    const url2 = "http://192.168.88.153/letrimex_v2/public/listaVendedoresApp";
     const response = await fetch(url2, {
       method: 'GET',
       mode: 'cors',

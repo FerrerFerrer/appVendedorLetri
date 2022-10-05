@@ -1,7 +1,9 @@
 <ion-header>
   <ion-toolbar>
-    <ion-icon name="close-outline" (click)="cerrar()"></ion-icon>
-    <ion-title class="ion-text-center">Solicitud aceptada</ion-title>
+    <ion-row>
+      <ion-icon name="close-outline" (click)="cerrar()"></ion-icon>
+      <ion-title class="ion-text-center">Solicitud aceptada</ion-title>
+    </ion-row>
   </ion-toolbar>
 </ion-header>
 
@@ -11,7 +13,6 @@
       <ion-card-subtitle >Nueva solicitud</ion-card-subtitle>
       <ion-card-title>{{solicitud.solicitud.categ}}</ion-card-title>
     </ion-card-header>
-
     <ion-card-content>
       Telefono de contacto: {{solicitud.solicitud.telefono_contacto}}<br>
       Correo del contacto:  {{solicitud.solicitud.correo_contacto}}<br>
@@ -50,7 +51,6 @@
     <section class="ion-margin">
       <ion-button *ngIf="aceptarJSON.folio != null || aceptarJSON.motivo != null" type="submit" color="primary" expand="block">Enviar
       </ion-button>
-
     </section>
   </form>
 </ion-content>

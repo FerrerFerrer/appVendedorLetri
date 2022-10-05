@@ -10,7 +10,7 @@ const config: CapacitorConfig = {
       launchShowDuration: 0
     },
     PushNotification:{
-      presentation: ["badge", "sound" , "alert"]
+      presentationOptions: ["badge", "sound" , "alert"]
     }
   }
 

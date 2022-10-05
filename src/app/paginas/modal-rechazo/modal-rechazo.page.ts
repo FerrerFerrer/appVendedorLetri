@@ -23,7 +23,7 @@ export class ModalRechazoPage implements OnInit {
       'motivo': this.rechazoJSON.motivo
     }
 
-    let url = "http://http://192.168.88.237/letrimex_v2/public/rechazo";
+    let url = "http://192.168.88.153/letrimex_v2/public/rechazo";
     const response2 = await fetch(url, {
       method: 'POST',
       mode: 'cors',
@@ -35,6 +35,7 @@ export class ModalRechazoPage implements OnInit {
     });
     console.log("Status de rechazo", response2.status);
     this.rechazoJSON.folio = "Sin registro."
+    this.cerrar();
   }
 
   ngOnInit() {

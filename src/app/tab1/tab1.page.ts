@@ -4,7 +4,6 @@ import { ModalRechazoPage } from '../paginas/modal-rechazo/modal-rechazo.page';
 import { ModalRechazoPageModule } from '../paginas/modal-rechazo/modal-rechazo.module';
 import { ModalAceptarPage } from '../paginas/modal-aceptar/modal-aceptar.page';
 import { ModalAceptarPageModule } from '../paginas/modal-aceptar/modal-aceptar.module';
-import { range } from 'rxjs';
 
 @Component({
   selector: 'app-tab1',
@@ -28,7 +27,7 @@ export class Tab1Page {
 
   async tiempoRespuestaVendedor(id){
     // id de las solicitudes
-    let url = "http://192.168.88.237/letrimex_v2/public/tiempo_respuesta/" + id;
+    let url = "http://192.168.88.153/letrimex_v2/public/tiempo_respuesta/" + id;
     const response2 = await fetch(url, {
         method: 'GET',
         mode: 'cors',
@@ -54,8 +53,8 @@ export class Tab1Page {
   }
 
   async peticiones(){
-    const url = "http://192.168.88.237/letrimex_v2/public/api/solicitudes_vendedor/"+this.id_vendedor;
-    const url2 = "http://192.168.88.237/letrimex_v2/public/api/ordenes_vendedor/"+this.id_vendedor;
+    const url = "http://192.168.88.153/letrimex_v2/public/api/solicitudes_vendedor/"+this.id_vendedor;
+    const url2 = "http://192.168.88.153/letrimex_v2/public/api/ordenes_vendedor/"+this.id_vendedor;
     let data = {
       method : "GET",
       headers: {"Content-type": "application/json"}

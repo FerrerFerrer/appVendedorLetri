@@ -23,7 +23,7 @@ export class ModalRechazoPage implements OnInit {
       'motivo': this.rechazoJSON.motivo
     }
 
-    let url = "http://192.168.88.153/letrimex_v2/public/rechazo";
+    let url = "http://192.168.88.153/letrimex_v2/public/api/rechazo";
     const response2 = await fetch(url, {
       method: 'POST',
       mode: 'cors',
@@ -33,6 +33,7 @@ export class ModalRechazoPage implements OnInit {
         'Content-Type': 'application/json'
       }
     });
+    
     console.log("Status de rechazo", response2.status);
     this.rechazoJSON.folio = "Sin registro."
     this.cerrar();
@@ -42,6 +43,7 @@ export class ModalRechazoPage implements OnInit {
   }
 
   cerrar() {
+   
     this.modalController.dismiss();
   }
 }

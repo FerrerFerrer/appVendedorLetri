@@ -27,6 +27,7 @@
     "@capacitor/cli": "4.3.0",
     "@capacitor/core": "4.3.0",
     "@capacitor/push-notifications": "^4.1.0",
+    "@ionic-native/local-notifications": "^4.20.0",
     "@ionic-native/splash-screen": "^5.36.0",
     "@ionic/angular": "^6.1.9",
     "axios": "^0.27.2",

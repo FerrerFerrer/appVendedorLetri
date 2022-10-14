@@ -23,6 +23,7 @@ export class ModalAceptarPage implements OnInit {
   
   ngOnInit() {
     this.solicitud = this.navParams.get('datos_orden');
+    this.aceptarJSON.id_solicitud = this.solicitud.solicitud.id;
     console.log(this.solicitud)
   }
 
@@ -33,13 +34,10 @@ export class ModalAceptarPage implements OnInit {
     if(this.aceptarJSON.respuesta == "No"){
       this.aceptarJSON.folio = "Sin registro.";
     }
-    this.aceptarJSON.id_solicitud = this.solicitud.solicitud.id;
+   
     console.log(this.aceptarJSON);
+    
     this.precotizacion(this.solicitud.solicitud.id, this.aceptarJSON.motivo, this.aceptarJSON.folio);
-    this.cerrar();
-  }
-
-  solicitud_terminada() {
     this.cerrar();
   }
 
@@ -65,7 +63,7 @@ export class ModalAceptarPage implements OnInit {
   async guardarLocal() {
     if (this.aceptarJSON.respuesta == "Si") {
       // id_solicitud
-      let url = "http://192.168.88.153/public/tiempo_cliente/" + this.aceptarJSON.id_solicitud;
+      let url = "http://192.168.88.153/letrimex_v2/public/tiempo_cliente/" + this.solicitud.solicitud.id;
 
       const response2 = await fetch(url, {
         method: 'GET',
@@ -75,7 +73,7 @@ export class ModalAceptarPage implements OnInit {
           'Access-Control-Allow-Origin': '*'
         }
       });
-      console.log("Status de tiempo_respuesta", response2.status);
+      console.log("Status de tiempo_cliente", response2.status);
 
     }
   }

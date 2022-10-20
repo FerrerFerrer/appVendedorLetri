@@ -1,7 +1,8 @@
 {
   "name": "appVendedor",
   "integrations": {
-    "cordova": {}
+    "cordova": {},
+    "capacitor": {}
   },
   "type": "angular"
 }

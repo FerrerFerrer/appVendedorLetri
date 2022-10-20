@@ -1,10 +1,6 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title class="ion-text-center">Solicitudes</ion-title>
-  </ion-toolbar>
-</ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-button (click)="refrescar()" expand="full">Recargar</ion-button> 
   <ion-card *ngFor="let i of solicitudes">
     <ion-card-header>
       <ion-card-title>{{i.solicitud.categ}}</ion-card-title>
@@ -12,7 +8,8 @@
       <p>Estado: {{mapa.get(i.solicitud.id)}}</p>
     </ion-card-header>
     <ion-card-content>
-      <section *ngIf="mapa.get(i.solicitud.id) == '' || mapa.get(i.solicitud.id) == 'Sin respuesta'">
+        <!-- <section *ngIf="mapa.get(i.solicitud.id) == 'Sin respuesta' || '' || null">  -->
+      <section *ngIf="mapa.get(i.solicitud.respuesta) == null ">
         <h3 class="ion-text-justify">¿Aceptar Solicitud? </h3>
         <ion-button color="success" (click)="aceptarSolicitud(i)">
           Aceptar
@@ -21,11 +18,6 @@
           Rechazar
         </ion-button>
       </section>
-      <section *ngIf="mapa.get(i.solicitud.id) == 'Aceptada' || mapa.get(i.solicitud.id) == 'Rechazada'">
-        <ion-button color="success"(click)="pendienteSolicitud(i)" expand="block">
-          Continuar
-        </ion-button>
-      </section>       
     </ion-card-content>
   </ion-card>
 </ion-content>

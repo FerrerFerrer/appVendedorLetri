@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { LoadingController, ModalController, NavParams } from '@ionic/angular';
 
 @Component({
   selector: 'app-modal-rechazo',
@@ -8,29 +8,37 @@ import { ModalController } from '@ionic/angular';
 })
 export class ModalRechazoPage implements OnInit {
 
-  constructor(private modalController: ModalController) { }
+  constructor(private modalController: ModalController,
+    private navParams: NavParams,
+    private loadingCtrl: LoadingController) { }
 
+  solicitud:any;
+  cargando:any;
+  
   rechazoJSON = {
-    id_solicitud: "",
+    id_solicitud: 0,
     respuesta: "No",
-    motivo: null,
-    folio: null
+    motivo: "",
+    folio: ""
   }
 
+
+  
   async logForm() {
-    const data = {
+    let data = {
       'solicitud_id': this.rechazoJSON.id_solicitud,
       'motivo': this.rechazoJSON.motivo
     }
 
-    let url = "http://192.168.88.153/letrimex_v2/public/api/rechazo";
+
+    let url = "http://192.168.88.153:8000/letrimex_v2/public/rechazo";
     const response2 = await fetch(url, {
       method: 'POST',
-      mode: 'cors',
       body: JSON.stringify(data),
       headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
+          Accept: 'application/json',
+          'Acces-Control-Allow-Origin':'*',
+          'Content-Type': 'application/json'
       }
     });
     
@@ -40,10 +48,24 @@ export class ModalRechazoPage implements OnInit {
   }
 
   ngOnInit() {
+    this.solicitud = this.navParams.get('datos_orden');
+    this.rechazoJSON.id_solicitud = this.solicitud.solicitud.id;
   }
 
-  cerrar() {
-   
+  cerrar() {   
+    if(this.cargando != null){
+      this.cargando.dismiss();
+    }
     this.modalController.dismiss();
+  }
+
+  async loading(){
+    this.cargando = await this.loadingCtrl.create({
+      message: 'Enviando respuesta...',
+      cssClass: 'custom-loading',
+    });
+  
+    this.cargando.present();
+    
   }
 }

@@ -19,7 +19,7 @@
       </ion-select>
     </ion-item>
     <section class="ion-margin">
-      <ion-button *ngIf="rechazoJSON.motivo != null" color="primary" type="submit" expand="block">Enviar</ion-button>
+      <ion-button *ngIf="rechazoJSON.motivo != null" color="primary" type="submit" expand="block" (click)="loading()">Enviar</ion-button>
     </section>
   </form>
 </ion-content>

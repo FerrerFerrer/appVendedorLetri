@@ -1,4 +1,4 @@
-package com.letrimex.appVendedor;
+package io.ionic.starter;
 
 import com.getcapacitor.BridgeActivity;
 

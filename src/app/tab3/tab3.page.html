@@ -1,29 +1,28 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title class="ion-text-center">
-      Historial
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-card  *ngFor="let i of res">
+  <div  *ngFor="let i of res">
     <ion-card class="aceptadas" *ngIf="i.respuesta == 'Si, se realizó la cotización'">
       <ion-card-header >
         <ion-card-title>{{i.solicitud.categ}}</ion-card-title>
         <ion-card-subtitle>{{i.telefono_contacto}}</ion-card-subtitle>
         <ion-card-subtitle>{{i.solicitud.equipo}}</ion-card-subtitle>
         <ion-card-subtitle>Fecha: <strong>{{i.hora_asignado}}</strong></ion-card-subtitle>
-        <ion-card-subtitle>{{i.hora_asignado}}</ion-card-subtitle>
       </ion-card-header>
     </ion-card>
-    <ion-card class="rechazadas" *ngIf="i.respuesta != 'Si, se realizó la cotización'">
-      <ion-card-header class="rechazadas" >
+    <ion-card class="aceptadaSinfolio" *ngIf="i.respuesta == 'No podemos dar el servicio' ||  i.respuesta == 'No contesto el cliente'|| i.respuesta == 'Datos del contacto incorrectos'">
+      <ion-card-header>
         <ion-card-title>{{i.solicitud.categ}}</ion-card-title>
         <ion-card-subtitle>{{i.telefono_contacto}}</ion-card-subtitle>
         <ion-card-subtitle>{{i.solicitud.equipo}}</ion-card-subtitle>
-        <ion-card-subtitle>{{i.hora_asignado}}</ion-card-subtitle>
+        <ion-card-subtitle>Fecha: <strong>{{i.hora_asignado}}</strong></ion-card-subtitle>
       </ion-card-header>
     </ion-card>
-  </ion-card>
+    <ion-card class="rechazadas" *ngIf="i.respuesta == 'Estoy con un cliente' ||  i.respuesta == 'Estoy fuera de la oficina'|| i.respuesta == 'Hora de comida'">
+      <ion-card-header>
+        <ion-card-title>{{i.solicitud.categ}}</ion-card-title>
+        <ion-card-subtitle>{{i.telefono_contacto}}</ion-card-subtitle>
+        <ion-card-subtitle>{{i.solicitud.equipo}}</ion-card-subtitle>
+        <ion-card-subtitle>Fecha: <strong>{{i.hora_asignado}}</strong></ion-card-subtitle>
+      </ion-card-header>
+    </ion-card>
+  </div>
 </ion-content>

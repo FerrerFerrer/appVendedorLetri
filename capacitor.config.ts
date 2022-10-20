@@ -1,19 +1,23 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.letrimex.appVendedor',
+  appId: 'io.ionic.starter',
   appName: 'appVendedor',
   webDir: 'www',
   bundledWebRuntime: false,
-  plugins: {
-    splashScreen:{
-      launchShowDuration: 0
-    },
-    PushNotification:{
-      presentationOptions: ["badge", "sound" , "alert"]
+  cordova: {
+    preferences: {
+      ScrollEnabled: 'false',
+      BackupWebStorage: 'none'
     }
+  },
+  plugins: {
+    LocalNotifications: {
+      smallIcon: "ic_stat_icon_config_sample",
+      iconColor: "#488AFF",
+      sound: "beep.wav",
+    },
   }
-
 };
 
 export default config;

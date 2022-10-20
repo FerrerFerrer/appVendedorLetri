@@ -42,7 +42,7 @@ export class ModalAceptarPage implements OnInit {
   }
 
   async precotizacion(id_solicitud, motivo, folio) {
-    let url = "http://192.168.88.153/letrimex_v2/public/pre_cotizacion/" + id_solicitud + "/" + motivo + "/" + folio;
+    let url = "http://192.168.88.153:8000/letrimex_v2/public/pre_cotizacion/" + id_solicitud + "/" + motivo + "/" + folio;
     const response2 = await fetch(url, {
       method: 'GET',
       mode: 'cors',
@@ -63,7 +63,7 @@ export class ModalAceptarPage implements OnInit {
   async guardarLocal() {
     if (this.aceptarJSON.respuesta == "Si") {
       // id_solicitud
-      let url = "http://192.168.88.153/letrimex_v2/public/tiempo_cliente/" + this.solicitud.solicitud.id;
+      let url = "http://192.168.88.153:8000/letrimex_v2/public/tiempo_cliente/" + this.solicitud.solicitud.id;
 
       const response2 = await fetch(url, {
         method: 'GET',

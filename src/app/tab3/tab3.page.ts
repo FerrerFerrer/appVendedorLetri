@@ -12,7 +12,7 @@ export class Tab3Page {
   constructor() {}
 
   async ngOnInit() {
-    const url = "http://192.168.88.153/letrimex_v2/public/api/ordenes_vendedor/"+this.id_vendedor;
+    const url = "http://192.168.88.153:8000/letrimex_v2/public/api/ordenes_vendedor/"+this.id_vendedor;
     let data = {
       method : "GET",
       headers: {"Content-type": "application/json"}

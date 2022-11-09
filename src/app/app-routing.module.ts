@@ -17,7 +17,11 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./paginas/login/login.module').then( m => m.LoginPageModule)
+  },  {
+    path: 'factura',
+    loadChildren: () => import('./paginas/factura/factura.module').then( m => m.FacturaPageModule)
   }
+
 
 ];
 @NgModule({

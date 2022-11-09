@@ -36,6 +36,8 @@ export class Tab1Page {
 
   async tiempoRespuestaVendedor(id) {
     // id de las solicitudes
+    
+    // let url = "http://45.76.235.21/letrimex_v2/public/tiempo_respuesta/" + id;
     let url = "http://192.168.88.153:8000/letrimex_v2/public/tiempo_respuesta/" + id;
     const response2 = await fetch(url, {
       method: 'GET',
@@ -49,7 +51,11 @@ export class Tab1Page {
   }
 
   async ngOnInit() {
+    let date = new Date();
+    
     this.peticiones();
+    // console.log(date.toDateString());
+    console.log(date.toLocaleDateString());
     // await LocalNotifications.requestPermission();
     const next = setTimeout(() => { this.refrescar() }, 120000)
   }
@@ -59,16 +65,18 @@ export class Tab1Page {
   }
 
   async sendNotification() {
+    let date = new Date();
+    
     var options: LocalNotificationSchema = {
       id: 1,
       extra: {
         data: 'Notificacion',
       },
       iconColor: '#0051b3',
-      summaryText: 'Notificacion nueva',
+      summaryText: date.toLocaleDateString(),
       largeBody: 'Tienes una nueva solicitud',
       title: 'Hola vendedor.',
-      body: 'body'
+      body: 'Solicitud a las ' + date.toLocaleTimeString()
     }
     LocalNotifications.schedule({ notifications: [options] })
       .then(() => {
@@ -79,9 +87,12 @@ export class Tab1Page {
   
 
   async peticiones() {
-    console.log("revisando")
     const url = "http://192.168.88.153:8000/letrimex_v2/public/api/solicitudes_vendedor/" + this.id_vendedor;
     const url2 = "http://192.168.88.153:8000/letrimex_v2/public/api/ordenes_vendedor/" + this.id_vendedor;
+ 
+    // const url = "http://45.76.235.21/letrimex_v2/public/api/solicitudes_vendedor/" + this.id_vendedor;
+    // const url2 = "http://45.76.235.21/letrimex_v2/public/api/ordenes_vendedor/" + this.id_vendedor;
+    
     let data = {
       method: "GET",
       headers: { "Content-type": "application/json" }
@@ -91,8 +102,8 @@ export class Tab1Page {
     const req2 = await fetch(url2, data);
     this.ordenes = await req2.json();
 
-    console.log(this.solicitudes);
-    console.log(this.ordenes);
+    console.log("solicitud ",this.solicitudes);
+    // console.log("vendedores ",this.ordenes);
 
       console.log("validando estados");
       for (let i = 0; i < this.ordenes.length; i++) {

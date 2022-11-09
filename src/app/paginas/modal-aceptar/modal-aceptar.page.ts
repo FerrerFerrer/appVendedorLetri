@@ -10,7 +10,7 @@ import axios from 'axios';
 export class ModalAceptarPage implements OnInit {
 
   constructor(private modalController: ModalController,
-    private navParams: NavParams,) { }
+    private navParams: NavParams) { }
 
   solicitud:any;
 
@@ -18,7 +18,8 @@ export class ModalAceptarPage implements OnInit {
     id_solicitud:"",
     respuesta: "",
     folio: null,
-    motivo: null
+    motivo: null,
+    factura:""
   }
   
   ngOnInit() {
@@ -38,10 +39,12 @@ export class ModalAceptarPage implements OnInit {
     console.log(this.aceptarJSON);
     
     this.precotizacion(this.solicitud.solicitud.id, this.aceptarJSON.motivo, this.aceptarJSON.folio);
+    this.montoFactura(this.aceptarJSON.id_solicitud, this.aceptarJSON.factura);
     this.cerrar();
   }
 
   async precotizacion(id_solicitud, motivo, folio) {
+    // let url = "http://45.76.235.21/letrimex_v2/public/pre_cotizacion/" + id_solicitud + "/" + motivo + "/" + folio;
     let url = "http://192.168.88.153:8000/letrimex_v2/public/pre_cotizacion/" + id_solicitud + "/" + motivo + "/" + folio;
     const response2 = await fetch(url, {
       method: 'GET',
@@ -54,7 +57,19 @@ export class ModalAceptarPage implements OnInit {
     console.log("Status de precotizacion", response2.status);
   }
 
-
+  async montoFactura(id_solicitud, factura){
+    // let url = "http://45.76.235.21/letrimex_v2/public/api/setMonto/" + id_solicitud + "/" + factura;
+    let url = "http://192.168.88.153:8000/letrimex_v2/public/api/setMonto/" + id_solicitud + "/" + factura;
+    const response2 = await fetch(url, {
+      method: 'GET',
+      mode: 'cors',
+      headers: {
+        Accept: 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      }
+    });
+    console.log("Status de monto factura", response2.status);
+  }
 
   cerrar() {
     this.modalController.dismiss();
@@ -64,7 +79,7 @@ export class ModalAceptarPage implements OnInit {
     if (this.aceptarJSON.respuesta == "Si") {
       // id_solicitud
       let url = "http://192.168.88.153:8000/letrimex_v2/public/tiempo_cliente/" + this.solicitud.solicitud.id;
-
+      // let url = "http://45.76.235.21/letrimex_v2/public/tiempo_cliente/" + this.solicitud.solicitud.id;
       const response2 = await fetch(url, {
         method: 'GET',
         mode: 'cors',

@@ -29,9 +29,9 @@ export class ModalRechazoPage implements OnInit {
       'solicitud_id': this.rechazoJSON.id_solicitud,
       'motivo': this.rechazoJSON.motivo
     }
-
-
+    
     let url = "http://192.168.88.153:8000/letrimex_v2/public/rechazo";
+    // let url = "http://45.76.235.21/letrimex_v2/public/rechazo";
     const response2 = await fetch(url, {
       method: 'POST',
       body: JSON.stringify(data),

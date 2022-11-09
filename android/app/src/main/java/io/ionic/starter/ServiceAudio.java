@@ -6,10 +6,10 @@ import android.os.IBinder;
 
 import androidx.annotation.Nullable;
 
-public class ServiceApp extends Service {
+public class ServiceAudio extends Service {
+
   @Override
-  public void onCreate()
-  {
+  public void onCreate(){
 
   }
 

@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar style="margin-top: 25px;">
+    <ion-row>
+      <ion-icon name="close-outline" (click)="cerrar()"></ion-icon>
+      <ion-title class="ion-text-center">Facturación</ion-title>
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+  
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title> {{solicitud.solicitud.categ}} </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      Telefono de contacto: {{solicitud.telefono_contacto}}<br>
+      Requerimiento:{{solicitud.equipo}}<br>
+      Fecha del servicio: {{solicitud.solicitud.fecha_servicio}}<br>
+      Comentarios: {{solicitud.solicitud.nota}}<br>
+      Folio: {{solicitud.folio}}<br>
+    </ion-card-content>
+  </ion-card>
+
+
+  <form (ngSubmit)="logForm()">
+    <ion-item >
+      <ion-label>Factura a ingresar</ion-label>
+      <ion-input type="number" name="factura" [(ngModel)]="facturaJSON.factura"></ion-input>
+    </ion-item>
+    <ion-item >
+      <ion-label>Monto a ingresar</ion-label>
+      <ion-input type="number" name="monto" [(ngModel)]="facturaJSON.monto"></ion-input>
+    </ion-item>
+    <section class="ion-margin">
+      <ion-button *ngIf="facturaJSON.factura != '' && facturaJSON.monto != ''" type="submit" color="primary"
+        expand="block">Enviar
+      </ion-button>
+    </section>
+  </form>
+</ion-content>

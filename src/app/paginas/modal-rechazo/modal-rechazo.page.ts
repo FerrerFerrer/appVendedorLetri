@@ -14,7 +14,7 @@ export class ModalRechazoPage implements OnInit {
 
   solicitud:any;
   cargando:any;
-  
+
   rechazoJSON = {
     id_solicitud: 0,
     respuesta: "No",
@@ -23,14 +23,14 @@ export class ModalRechazoPage implements OnInit {
   }
 
 
-  
+
   async logForm() {
     let data = {
       'solicitud_id': this.rechazoJSON.id_solicitud,
       'motivo': this.rechazoJSON.motivo
     }
-    
-    let url = "http://192.168.88.153:8000/letrimex_v2/public/rechazo";
+
+    let url = "http://localhost/letrimex_v2/public/rechazo";
     // let url = "http://45.76.235.21/letrimex_v2/public/rechazo";
     const response2 = await fetch(url, {
       method: 'POST',
@@ -41,7 +41,7 @@ export class ModalRechazoPage implements OnInit {
           'Content-Type': 'application/json'
       }
     });
-    
+
     console.log("Status de rechazo", response2.status);
     this.rechazoJSON.folio = "Sin registro."
     this.cerrar();
@@ -52,7 +52,7 @@ export class ModalRechazoPage implements OnInit {
     this.rechazoJSON.id_solicitud = this.solicitud.solicitud.id;
   }
 
-  cerrar() {   
+  cerrar() {
     if(this.cargando != null){
       this.cargando.dismiss();
     }
@@ -64,8 +64,8 @@ export class ModalRechazoPage implements OnInit {
       message: 'Enviando respuesta...',
       cssClass: 'custom-loading',
     });
-  
+
     this.cargando.present();
-    
+
   }
 }

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Local } from 'protractor/built/driverProviders';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AlertController} from '@ionic/angular';
+import { ApiService } from 'src/app/services/api.service';
 
 
 @Component({
@@ -15,7 +16,7 @@ import { AlertController} from '@ionic/angular';
 
 export class LoginPage implements OnInit {
   builder: FormGroup;
-  
+
   login = {
     user: "",
     password: ""
@@ -24,7 +25,8 @@ export class LoginPage implements OnInit {
   constructor(
     public fb: FormBuilder,
     public alertController: AlertController,
-    private router: Router) {
+    private router: Router,
+    private _apiService: ApiService) {
 
     this.builder = this.fb.group({
       'user': new FormControl("", Validators.required),
@@ -93,7 +95,7 @@ export class LoginPage implements OnInit {
         }
 
   async validarUsuario(user, password){
-    const url2 = "http://192.168.88.153:8000/letrimex_v2/public/listaVendedoresApp";
+    const url2 = "http://localhost/letrimex_v2/public/listaVendedoresApp";
     // const url2 = "http://45.76.235.21/letrimex_v2/public/listaVendedoresApp";
     const response = await fetch(url2, {
       method: 'GET',

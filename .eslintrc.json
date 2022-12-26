@@ -33,7 +33,7 @@
           {
             "type": "attribute",
             "prefix": "app",
-            "style": "camelCase"
+            // "style": "camelCase"
           }
         ]
       }

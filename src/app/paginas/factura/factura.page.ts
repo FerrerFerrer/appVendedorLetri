@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController, NavParams } from '@ionic/angular';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-factura',
@@ -8,17 +9,20 @@ import { ModalController, NavParams } from '@ionic/angular';
 })
 export class FacturaPage implements OnInit {
 
-  solicitud:any;
+  solicitud: any;
 
   facturaJSON = {
-    id_solicitud: "",
-    factura: "",
-    monto: "",
-    respuesta: "",
+    id_solicitud: '',
+    factura: '',
+    monto: '',
+    respuesta: '',
     folio: null
   }
 
-  constructor(private modalController: ModalController, private navParams: NavParams) { }
+  constructor(private modalController: ModalController, private navParams: NavParams,
+    private _apiService: ApiService) {
+
+  }
 
   ngOnInit() {
     this.solicitud = this.navParams.get('datos_orden');
@@ -36,9 +40,9 @@ export class FacturaPage implements OnInit {
   }
 
   async montoFactura(){
-    let url = "http://45.76.235.21/letrimex_v2/public/api/facturar/" + this.facturaJSON.id_solicitud +"/"+ this.facturaJSON.factura +"/" + this.facturaJSON.monto;
+    let url = "http://localhost/letrimex_v2/public/api/facturar/" + this.facturaJSON.id_solicitud +"/"+ this.facturaJSON.factura +"/" + this.facturaJSON.monto;
     // let url = "http://192.168.88.153:8000/letrimex_v2/public/api/facturar/" + this.facturaJSON.id_solicitud +"/"+ this.facturaJSON.factura +"/" + this.facturaJSON.monto;
-    
+
     const response2 = await fetch(url, {
       method: 'GET',
       mode: 'cors',
@@ -47,7 +51,7 @@ export class FacturaPage implements OnInit {
         'Access-Control-Allow-Origin': '*'
       }
     });
-    console.log("Status de facturacion", response2.status);
+    console.log('Status de facturacion', response2.status);
   }
 
 }

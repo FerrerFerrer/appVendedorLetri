@@ -15,7 +15,7 @@ export class Tab3Page {
   constructor(private modalController: ModalController) {}
 
   async ngOnInit() {
-    const url = "http://192.168.88.153:8000/letrimex_v2/public/api/ordenes_vendedor/" + this.id_vendedor;
+    const url = "http://localhost/letrimex_v2/public/api/ordenes_vendedor/" + this.id_vendedor;
     // const url = "http://45.76.235.21/letrimex_v2/public/api/ordenes_vendedor/" + this.id_vendedor;
 
     let data = {

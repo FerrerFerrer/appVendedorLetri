@@ -19,7 +19,7 @@ export class ModalAceptarPage implements OnInit {
     respuesta: "",
     folio: null,
     motivo: null,
-    factura:""
+    factura:"0"
   }
 
   ngOnInit() {

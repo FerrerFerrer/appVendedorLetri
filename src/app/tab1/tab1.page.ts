@@ -132,7 +132,10 @@ export class Tab1Page {
 
   async rechazarSolicitud(soli) {
     // id de las solicitudes
-    this.tiempoRespuestaVendedor(soli.solicitud.id);
+   let aux =  localStorage.getItem(soli.solicitud.id)
+    if (aux == "") {
+      this.tiempoRespuestaVendedor(soli.solicitud.id);
+    }
     const modal = await this.modalController.create({
       component: ModalRechazoPage,
       componentProps: {
@@ -145,7 +148,10 @@ export class Tab1Page {
   }
 
   async aceptarSolicitud(soli) {
-    this.tiempoRespuestaVendedor(soli.solicitud.id);
+    let aux = localStorage.getItem(soli.solicitud.id)
+    if (aux == "") {
+      this.tiempoRespuestaVendedor(soli.solicitud.id);
+    }
     const modal = await this.modalController.create({
       component: ModalAceptarPage,
       componentProps: {
@@ -155,29 +161,5 @@ export class Tab1Page {
     });
     localStorage.setItem(soli.solicitud.id, 'Aceptada');
     await modal.present();
-  }
-
-  async pendienteSolicitud(soli) {
-    // id de las solicitudes
-    if (localStorage.getItem(soli.solicitud.id) == 'Aceptada') {
-      const modal = await this.modalController.create({
-        component: ModalAceptarPage,
-        componentProps: {
-          datos_orden: soli,
-          ModalAceptarPageModule,
-        },
-      });
-      await modal.present();
-    }
-    if (localStorage.getItem(soli.solicitud.id) == 'Rechazada') {
-      const modal = await this.modalController.create({
-        component: ModalRechazoPage,
-        componentProps: {
-          datos_orden: soli,
-          ModalRechazoPageModule,
-        },
-      });
-      await modal.present();
-    }
   }
 }

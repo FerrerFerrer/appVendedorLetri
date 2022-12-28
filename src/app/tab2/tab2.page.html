@@ -1,8 +1,40 @@
 <ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-grid>
+      <ion-row>
+        <div class="titulo">
+          <h1>Instrucciones</h1>
+        </div>
+      </ion-row>
+      <ion-row>
+        <p >
+          1.- Acepta/rechaza una solicitud
+        </p>
+        <img src="../../assets/img/img_aceptar_rechazar.jpg" alt="">
+      </ion-row>
+      <ion-row>
+        <p>
+          2.- Contacta al prospecto
+        </p>
+      </ion-row>
+      <ion-row>
+        <p>
+          3.- Regresa a la aplicacion y termina las preguntas.
+        </p>
+        <img src="../../assets/img/preguntas.jpg" alt="">
+      </ion-row>
+      <ion-row>
+        <p>
+          4.- En el apartado de historial se ingresa el monto.
+        </p>
+        <img src="../../assets/img/img_factura.jpg" alt="">
+      </ion-row>
 
-  <div style="display: flex; height: 85vh; margin: 0rem 1rem;" class="ion-justify-content-end ion-align-items-end">
-    <ion-button (click)="logOut()">
+    </ion-grid>
+  </ion-card>
+  <!-- <div style="display: flex; height: 85vh; margin: 0rem 1rem;" class="ion-justify-content-end ion-align-items-end"> -->
+    <ion-button (click)="logOut()" style="margin-top: 10px;">
       Cerrar sesion
     </ion-button>
-  </div>
+  <!-- </div> -->
 </ion-content>

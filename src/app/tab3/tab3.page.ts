@@ -2,21 +2,23 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { FacturaPageModule } from '../paginas/factura/factura.module';
 import { FacturaPage } from '../paginas/factura/factura.page';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-tab3',
   templateUrl: 'tab3.page.html',
   styleUrls: ['tab3.page.scss']
 })
-export class Tab3Page {
+export class Tab3Page extends ApiService{
 
   id_vendedor = localStorage.getItem('id_vendedor');
   res: any;
-  constructor(private modalController: ModalController) {}
+  constructor(private modalController: ModalController) {
+    super();
+  }
 
   async ngOnInit() {
-    const url = "http://localhost/letrimex_v2/public/api/ordenes_vendedor/" + this.id_vendedor;
-    // const url = "http://45.76.235.21/letrimex_v2/public/api/ordenes_vendedor/" + this.id_vendedor;
+    const url = this._apiuri + "api/ordenes_vendedor/" + this.id_vendedor;
 
     let data = {
       method : "GET",

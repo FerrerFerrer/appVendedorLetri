@@ -10,6 +10,7 @@ import {
   LocalNotifications,
   LocalNotificationSchema,
 } from '@capacitor/local-notifications';
+import { ApiService } from '../services/api.service';
 
 // const { LocalNotifications } = Plugins;
 
@@ -18,7 +19,8 @@ import {
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss'],
 })
-export class Tab1Page {
+
+export class Tab1Page extends ApiService{
   notificationsDelayInSeconds: string = '';
   //id_solicitud = localStorage.getItem('id_solicitud')
   id_vendedor = localStorage.getItem('id_vendedor');
@@ -28,7 +30,9 @@ export class Tab1Page {
   cantidadPeticiones = 0;
   ordenes2: any;
 
-  constructor(private modalController: ModalController) {}
+  constructor(private modalController: ModalController) {
+    super();
+  }
 
   usuario = {
     user: '',
@@ -38,8 +42,8 @@ export class Tab1Page {
   async tiempoRespuestaVendedor(id) {
     // id de las solicitudes
 
-    // let url = "http://45.76.235.21/letrimex_v2/public/tiempo_respuesta/" + id;
-    let url = 'http://localhost/letrimex_v2/public/tiempo_respuesta/' + id;
+    let url =  this._apiuri + "tiempo_respuesta/" + id;
+    // let url = 'http://localhost/letrimex_v2/public/tiempo_respuesta/' + id;
     const response2 = await fetch(url, {
       method: 'GET',
       mode: 'cors',
@@ -53,7 +57,7 @@ export class Tab1Page {
 
   async ngOnInit() {
     let date = new Date();
-
+    this.usuario.user = localStorage.getItem('user');
     this.peticiones();
     // console.log(date.toDateString());
     // console.log(date.toLocaleDateString());
@@ -88,15 +92,15 @@ export class Tab1Page {
   }
 
   async peticiones() {
-    const url =
-      'http://localhost/letrimex_v2/public/api/solicitudes_vendedor/' +
-      this.id_vendedor;
-    const url2 =
-      'http://localhost/letrimex_v2/public/api/ordenes_vendedor/' +
-      this.id_vendedor;
+    // const url =
+    //   'http://localhost/letrimex_v2/public/api/solicitudes_vendedor/' +
+    //   this.id_vendedor;
+    // const url2 =
+    //   'http://localhost/letrimex_v2/public/api/ordenes_vendedor/' +
+    //   this.id_vendedor;
 
-    // const url = "http://45.76.235.21/letrimex_v2/public/api/solicitudes_vendedor/" + this.id_vendedor;
-    // const url2 = "http://45.76.235.21/letrimex_v2/public/api/ordenes_vendedor/" + this.id_vendedor;
+    const url = this._apiuri + "api/solicitudes_vendedor/" + this.id_vendedor;
+    const url2 = this._apiuri + "api/ordenes_vendedor/" + this.id_vendedor;
 
     let data = {
       method: 'GET',

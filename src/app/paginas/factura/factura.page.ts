@@ -7,7 +7,7 @@ import { ApiService } from 'src/app/services/api.service';
   templateUrl: './factura.page.html',
   styleUrls: ['./factura.page.scss'],
 })
-export class FacturaPage implements OnInit {
+export class FacturaPage extends ApiService {
 
   solicitud: any;
 
@@ -21,7 +21,7 @@ export class FacturaPage implements OnInit {
 
   constructor(private modalController: ModalController, private navParams: NavParams,
     private _apiService: ApiService) {
-
+      super();
   }
 
   ngOnInit() {
@@ -40,7 +40,7 @@ export class FacturaPage implements OnInit {
   }
 
   async montoFactura(){
-    let url = "http://localhost/letrimex_v2/public/api/facturar/" + this.facturaJSON.id_solicitud +"/"+ this.facturaJSON.factura +"/" + this.facturaJSON.monto;
+    let url = this._apiuri + "api/facturar/" + this.facturaJSON.id_solicitud +"/"+ this.facturaJSON.factura +"/" + this.facturaJSON.monto;
     // let url = "http://192.168.88.153:8000/letrimex_v2/public/api/facturar/" + this.facturaJSON.id_solicitud +"/"+ this.facturaJSON.factura +"/" + this.facturaJSON.monto;
 
     const response2 = await fetch(url, {

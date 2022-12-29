@@ -1,16 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { LoadingController, ModalController, NavParams } from '@ionic/angular';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-modal-rechazo',
   templateUrl: './modal-rechazo.page.html',
   styleUrls: ['./modal-rechazo.page.scss'],
 })
-export class ModalRechazoPage implements OnInit {
+export class ModalRechazoPage extends ApiService{
 
   constructor(private modalController: ModalController,
     private navParams: NavParams,
-    private loadingCtrl: LoadingController) { }
+    private loadingCtrl: LoadingController) {
+    super();
+  }
 
   solicitud:any;
   cargando:any;
@@ -30,8 +33,8 @@ export class ModalRechazoPage implements OnInit {
       'motivo': this.rechazoJSON.motivo
     }
 
-    let url = "http://localhost/letrimex_v2/public/rechazo";
-    // let url = "http://45.76.235.21/letrimex_v2/public/rechazo";
+    // let url = "http://localhost/letrimex_v2/public/rechazo";
+    let url = this._apiuri + "rechazo";
     const response2 = await fetch(url, {
       method: 'POST',
       body: JSON.stringify(data),

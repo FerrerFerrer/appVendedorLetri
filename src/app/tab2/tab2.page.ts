@@ -8,7 +8,16 @@ import { Router } from '@angular/router';
 })
 export class Tab2Page {
 
+  usuario = {
+    user: '',
+    password: '',
+  }
+
   constructor(private router: Router) {}
+
+  ngOnInit(){
+    this.usuario.user = localStorage.getItem('user');
+  }
 
   logOut(){
     localStorage.clear();
